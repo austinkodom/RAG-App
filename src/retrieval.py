@@ -29,9 +29,13 @@ def search_arxiv(query, max_results=5):
         response.raise_for_status()
 
         root = ET.fromstring(response.content)
+            
+        # Defining a variable to explicitly reference the namespace
+        namespace = {'atom': 'http://www.w3.org/2005/Atom'}
+
         abstracts = []
-        for entry in root.findall("{http://www.w3.org/2005/Atom}entry"):
-            summary = entry.find("summary")
+        for entry in root.findall('atom:entry', namespace):
+            summary = entry.find("atom:summary", namespace)
             if summary is not None:
                 abstracts.append(summary.text.strip())
             else:
