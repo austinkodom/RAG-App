@@ -1,2 +1,7 @@
 # Backup Files
 *~
+
+# Pycache Directory
+__pycache__/
+*.pyc
+*.pyo
